@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Ensures proper scaling on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ziad Alshorman - Resume</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Font Awesome CSS (for moon/sun icons) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  >
+
+  <!-- Link to external Resume CSS -->
+  <link rel="stylesheet" href="resume.css">
+</head>
+<body class="resume-page">
+
+  <!-- OPTIONAL BACK TO HOMEPAGE BUTTON -->
+  <div class="resume-nav">
+    <a href="index.html" class="back-button">
+      &larr; Back to Homepage
+    </a>
+  </div>
+
+  <!-- THEME TOGGLE BUTTON -->
+  <button class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- MAIN RESUME CONTAINER -->
+  <div class="resume-container">
+    <header class="resume-header">
+      <h1>Ziad Alshorman</h1>
+      <div class="contact-info">
+        <p>📧 ziad@alshorman.com</p>
+        <p>📱 (902) 412-6316</p>
+        <p>📍 Halifax, NS, Canada</p>
+        <p>🔗 <a href="https://alshorman.com" target="_blank">alshorman.com</a></p>
+      </div>
+    </header>
+
+    <section class="resume-section">
+      <h2>Professional Summary</h2>
+      <p>
+        Experienced software engineer specializing in full-stack development and AI solutions.
+        Proven track record in delivering scalable applications and implementing machine learning models.
+      </p>
+    </section>
+
+    <section class="resume-section">
+      <h2>Experience</h2>
+      <div class="experience-item">
+        <h3>Software Engineer - Alshorman Family Company</h3>
+        <p class="date">2020 - Present</p>
+        <ul>
+          <li>Led development of AI-powered applications</li>
+          <li>Designed and implemented responsive web solutions</li>
+          <li>Managed client relationships and project deliverables</li>
+        </ul>
+      </div>
+      <!-- Add more experience items as needed -->
+    </section>
+
+    <section class="resume-section">
+      <h2>Education</h2>
+      <div class="education-item">
+        <h3>Bachelor of Computer Science</h3>
+        <p>Dalhousie University - Halifax, NS</p>
+        <p class="date">2019 - 2023</p>
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Programming</h3>
+          <ul>
+            <li>JavaScript/TypeScript</li>
+            <li>Python</li>
+            <li>Java</li>
+            <li>C++</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Technologies</h3>
+          <ul>
+            <li>React</li>
+            <li>Node.js</li>
+            <li>TensorFlow</li>
+            <li>Docker</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FIXED ACTIONS (PRINT / ETC.) -->
+  <div class="resume-actions">
+    <a href="#" class="print-button" onclick="window.print()">Print Resume</a>
+  </div>
+
+  <!-- THEME TOGGLE SCRIPT -->
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const toggleIcon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute(
+        'data-theme',
+        currentTheme === 'dark' ? 'light' : 'dark'
+      );
+      toggleIcon.classList.toggle('fa-moon');
+      toggleIcon.classList.toggle('fa-sun');
+    });
+  </script>
+
+</body>
+</html>

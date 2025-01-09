@@ -2,121 +2,247 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Resume</title>
-  <style>
-    body {
-      max-width: 800px;
-      margin: 0 auto;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      padding: 1rem;
-      color: #333;
-    }
-    header {
-      text-align: center;
-    }
-    h1, h2 {
-      margin-bottom: 0.5rem;
-    }
-    .contact-info {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .section {
-      margin: 1.5rem 0;
-    }
-    .job-title, .degree {
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin: 0.5rem 0 0.25rem;
-    }
-    .dates {
-      font-style: italic;
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-    ul {
-      margin: 0.5rem 0 0 1.5rem;
-      padding: 0;
-      list-style-type: disc;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.8rem;
-      margin-top: 2rem;
-      color: #888;
-    }
-  </style>
+  <!-- Ensures responsive scaling on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Alshorman Family Company</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  >
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
-    <h1>Your Name</h1>
-    <div class="contact-info">
-      Email: your.email@example.com | Phone: (123) 456-7890 | City, State
-    </div>
+    <h1>Alshorman</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="resume.html" class="nav-link">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
+  <!-- SLIDESHOW SECTION -->
+  <section class="slideshow-container" id="slideshow">
+    <!-- Slide 1 -->
+    <div class="slide fade">
+      <picture>
+        <source srcset="mazar.webp" type="image/webp">
+        <img src="mazar.jpg" alt="Slide 1" loading="lazy" width="1920" height="1080">
+      </picture>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide fade">
+      <picture>
+        <source srcset="mazar2.webp" type="image/webp">
+        <img src="mazar2.jpg" alt="Slide 2" loading="lazy" width="1920" height="1080">
+      </picture>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide fade">
+      <picture>
+        <source srcset="mazar3.webp" type="image/webp">
+        <img src="mazar3.jpg" alt="Slide 3" loading="lazy" width="1920" height="1080">
+      </picture>
+    </div>
+
+    <!-- Navigation arrows -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+    <!-- Dots indicator -->
+    <div class="dots">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
   <main>
-    <!-- SUMMARY -->
-    <section class="section summary">
-      <h2>Summary</h2>
+    <!-- ABOUT US SECTION -->
+    <section class="about" id="about">
+      <h2>About Alshorman</h2>
       <p>
-        Write a brief summary or career objective here. Highlight your 
-        most relevant skills, experience, and accomplishments in 2–3 sentences.
+        Alshorman is a family-owned and operated company, committed to delivering 
+        top-notch services worldwide.
+      </p>
+      <p>
+        Our mission: To provide the best and most reliable solutions to our clients, 
+        while creating lasting partnerships that benefit all.
       </p>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section class="section experience">
-      <h2>Experience</h2>
-
-      <!-- Job 1 -->
-      <div class="job">
-        <p class="job-title">Job Title – Company Name</p>
-        <p class="dates">Start Date – Present</p>
-        <ul>
-          <li>Key achievement or responsibility 1</li>
-          <li>Key achievement or responsibility 2</li>
-          <li>Key achievement or responsibility 3</li>
-        </ul>
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+      <div class="service-box fade-in">
+        <img src="webdevelopment1.jpg" alt="Custom Website Solutions">
+        <h3>Custom Website Solutions</h3>
+        <p>
+          We specialize in designing and building fully responsive, 
+          user-friendly websites that help businesses establish and expand 
+          their online presence.
+        </p>
       </div>
 
-      <!-- Job 2 -->
-      <div class="job">
-        <p class="job-title">Job Title – Company Name</p>
-        <p class="dates">Start Date – End Date</p>
-        <ul>
-          <li>Key achievement or responsibility 1</li>
-          <li>Key achievement or responsibility 2</li>
-          <li>Key achievement or responsibility 3</li>
-        </ul>
+      <div class="service-box fade-in">
+        <img src="artificial intelligence2.jpg" alt="AI Model Development">
+        <h3>AI Model Development</h3>
+        <p>
+          Harness the power of machine learning and artificial intelligence. 
+          From predictive analytics to NLP solutions, we deliver cutting-edge 
+          AI models tailored to your needs.
+        </p>
+      </div>
+
+      <div class="service-box fade-in">
+        <img src="appdevelpment1.jpg" alt="App Development & Deployment">
+        <h3>App Development & Deployment</h3>
+        <p>
+          Whether it's mobile or desktop, we create sleek, high-performance 
+          applications that meet modern standards and run seamlessly across platforms.
+        </p>
       </div>
     </section>
 
-    <!-- EDUCATION -->
-    <section class="section education">
-      <h2>Education</h2>
-      <p class="degree">Degree Name – Institution Name</p>
-      <p class="dates">Start Date – End Date</p>
-      <p>Include relevant coursework, honors, or extracurricular activities here.</p>
+    <!-- PROJECTS SECTION -->
+    <section class="projects" id="projects">
+      <h2>Our Projects</h2>
+      <div class="projects-container">
+        <div class="project-box fade-in">
+          <img src="appdevelpment1.jpg" alt="StoryTime AI">
+          <h3>StoryTime AI</h3>
+          <p>
+            StoryTime AI is a creative platform that uses advanced 
+            artificial intelligence to generate engaging, personalized stories. 
+            Perfect for children and adults alike, it sparks creativity 
+            and fosters a love of reading by bringing imaginative tales to life.
+          </p>
+        </div>
+        <div class="project-box fade-in">
+          <img src="novaserve1.jpg" alt="Nova Serve">
+          <h3>Nova Serve</h3>
+          <p>
+            Nova Serve is a community-driven app that connects local 
+            businesses with customers, streamlining service requests 
+            and scheduling. Its intuitive interface and automated features 
+            help users save time, reduce overhead, and build meaningful relationships.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <!-- SKILLS -->
-    <section class="section skills">
-      <h2>Skills</h2>
-      <ul>
-        <li>Skill 1 (e.g., JavaScript)</li>
-        <li>Skill 2 (e.g., Project Management)</li>
-        <li>Skill 3 (e.g., Data Analysis)</li>
-      </ul>
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <p>Phone: +1 (902) 412-6316</p>
+      <p>Email: ziad@alshorman.com</p>
+      <p>Address: 6205 Coburg Rd, Halifax, NS, Canada</p>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    © 2023 Your Name
+    &copy; 2025 Alshorman Family Company. All rights reserved.
   </footer>
+
+  <!-- THEME TOGGLE BUTTON -->
+  <button class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- SOCIAL LINKS -->
+  <div class="social-links">
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Slideshow variables
+    let slideIndex = 1;
+    let slideInterval;
+
+    // Show the requested slide
+    function showSlides(n) {
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+
+      if (n > slides.length) { slideIndex = 1; }
+      if (n < 1) { slideIndex = slides.length; }
+
+      // Hide all slides
+      slides.forEach(slide => slide.style.display = 'none');
+      // Remove 'active' from all dots
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      // Show the current slide and highlight the current dot
+      slides[slideIndex - 1].style.display = 'block';
+      dots[slideIndex - 1].classList.add('active');
+    }
+
+    // Next/previous controls
+    function changeSlide(n) {
+      showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize slideshow
+      showSlides(slideIndex);
+
+      // Auto-slide every 3 seconds
+      slideInterval = setInterval(() => {
+        changeSlide(1);
+      }, 3000);
+    });
+
+    // Dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute(
+        'data-theme',
+        currentTheme === 'dark' ? 'light' : 'dark'
+      );
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback);
+
+    // Observe elements that should fade in
+    document.querySelectorAll('.service-box, .project-box, .about p')
+      .forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
