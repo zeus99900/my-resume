@@ -200,31 +200,33 @@
     <div class="modal-content">
       <span class="close-btn" id="closeModal">&times;</span>
       <h3 id="serviceTitle">Inquiry</h3>
-      <p>Please fill in your details and we'll get back to you shortly.</p>
-      <form
-        id="inquiryForm"
-        action="https://formspree.io/f/your-form-id"
-        method="POST"
-      >
-        <!-- The subject field will be updated by JavaScript -->
-        <input
-          type="hidden"
-          id="emailSubject"
-          name="subject"
-        />
-        <label>
-          Your Name:
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Your Email:
-          <input type="email" name="email" required />
-        </label>
-        <label>
-          Message:
-          <textarea name="message" rows="4" required></textarea>
-        </label>
-        <button type="submit">Send Inquiry</button>
+      <form action="https://formsubmit.co/zdalshorman@gmail.com" method="POST" id="inquiryForm">
+        <!-- FormSubmit configuration -->
+        <input type="hidden" name="_subject" value="New Service Inquiry">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_next" value="https://alshorman.com/thanks.html">
+        
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+        
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        
+        <div class="form-group">
+          <input type="text" name="service" id="serviceInput" readonly>
+        </div>
+        
+        <div class="form-group">
+          <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+          <span class="btn-text">Send Inquiry</span>
+          <div class="loader"></div>
+        </button>
       </form>
     </div>
   </div>
@@ -318,39 +320,30 @@
     const closeModalBtn = document.getElementById('closeModal');
     const serviceTitle = document.getElementById('serviceTitle');
     const inquiryForm = document.getElementById('inquiryForm');
-    const emailSubject = document.getElementById('emailSubject');
+    const serviceInput = document.getElementById('serviceInput');
 
-    // Grab all "Inquire Now" buttons
-    const inquireButtons = document.querySelectorAll('.inquire-btn');
-
-    // When the user clicks an "Inquire Now" button
-    inquireButtons.forEach(btn => {
+    // Handle Inquire Now buttons
+    document.querySelectorAll('.inquire-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const serviceName = btn.getAttribute('data-service');
         serviceTitle.textContent = `Inquiry: ${serviceName}`;
-        
-        // Set up mailto or subject
-        // Using a 'mailto' link with subject:
-        // We'll build a custom "action" for the form
-        // e.g. mailto:zdalshorman@gmail.com?subject=Inquiry%20for%20...
-        const subjectParam = encodeURIComponent(`Inquiry for ${serviceName}`);
-        inquiryForm.action = `mailto:zdalshorman@gmail.com?subject=${subjectParam}`;
-        
-        // Show the modal
+        serviceInput.value = serviceName;
         modal.classList.add('show');
       });
     });
 
-    // Close the modal
-    closeModalBtn.addEventListener('click', () => {
-      modal.classList.remove('show');
+    // Close modal handlers
+    closeModalBtn.addEventListener('click', () => modal.classList.remove('show'));
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('show');
     });
 
-    // Also close when clicking outside modal content
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('show');
-      }
+    // Form submission
+    inquiryForm.addEventListener('submit', async (e) => {
+      const submitBtn = inquiryForm.querySelector('.submit-btn');
+      submitBtn.classList.add('loading');
+      
+      // FormSubmit will handle the rest automatically
     });
 
     // Pause slideshow on hover
