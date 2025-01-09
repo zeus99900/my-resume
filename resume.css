@@ -102,7 +102,8 @@
      EXPERIENCE & EDUCATION ITEMS
   ----------------------------------- */
   .experience-item,
-  .education-item {
+  .education-item,
+  .job {
     margin-bottom: 2rem;
     padding: 1.5rem;
     background: var(--light);
@@ -111,18 +112,26 @@
   }
   
   .experience-item:hover,
-  .education-item:hover {
+  .education-item:hover,
+  .job:hover {
     transform: translateY(-2px);
   }
   
-  .date {
+  .date,
+  .dates {
     font-weight: 500;
     margin-bottom: 0.5rem;
     color: var(--dark);
   }
   
+  .job-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  
   /* -----------------------------------
-     SKILLS SECTION
+     SKILLS
   ----------------------------------- */
   .skills-grid {
     display: grid;
@@ -266,7 +275,7 @@
   
     .experience-item,
     .education-item,
-    .skill-category {
+    .job {
       break-inside: avoid;
       page-break-inside: avoid;
     }
@@ -305,6 +314,7 @@
   
   [data-theme="dark"] .experience-item,
   [data-theme="dark"] .education-item,
+  [data-theme="dark"] .job,
   [data-theme="dark"] .skill-category {
     background: var(--primary);
     border: 1px solid rgba(255,255,255,0.2);
