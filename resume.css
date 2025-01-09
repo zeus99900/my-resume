@@ -7,7 +7,7 @@
   box-sizing: border-box;
 }
 
-/* Match the palette used on your main site */
+/* Root variables */
 :root {
   --primary: #2C3E50;
   --secondary: #3498DB;
@@ -15,16 +15,62 @@
   --light: #ECF0F1;
   --dark: #2C3E50;
   --text: #333;
-  --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+  --list-text: #444;
+  --list-hover: #3498DB;
+  --background: #ffffff;
+  --box-shadow: rgba(0, 0, 0, 0.1);
+  --border-color: #e0e0e0;
+  --gradient: linear-gradient(135deg, #2C3E50, #3498DB);
 }
 
-/* Dark mode overrides */
+/* Dark mode variables */
 [data-theme="dark"] {
   --primary: #1a2634;
-  --secondary: #2980B9;
-  --light: #2C3E50;
-  --dark: #ECF0F1;
+  --secondary: #3498DB;
+  --accent: #E74C3C;
+  --light: #ECF0F1;
+  --dark: #121212;
   --text: #ECF0F1;
+  --list-text: #b3b9c5;
+  --list-hover: #4a90e2;
+  --background: #1a1a1a;
+  --box-shadow: rgba(0, 0, 0, 0.3);
+  --border-color: #2c2c2c;
+  --gradient: linear-gradient(135deg, #1a2634, #2980B9);
+}
+
+/* Component colors */
+[data-theme="dark"] .resume-container {
+  background: #1f1f1f;
+  color: var(--text);
+  box-shadow: 0 0 30px var(--box-shadow);
+}
+
+[data-theme="dark"] .experience-item,
+[data-theme="dark"] .education-item,
+[data-theme="dark"] .job,
+[data-theme="dark"] .skill-category {
+  background: #2c2c2c;
+  border: 1px solid var(--border-color);
+  color: var(--text);
+}
+
+[data-theme="dark"] .resume-header h1,
+[data-theme="dark"] .resume-section h2 {
+  color: var(--secondary);
+}
+
+[data-theme="dark"] .job-title,
+[data-theme="dark"] .skill-category h3 {
+  color: #4a90e2;
+}
+
+[data-theme="dark"] a {
+  color: #5ea2e6;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--dark);
 }
 
 /* Body for the resume page */
@@ -351,4 +397,19 @@ body {
   background: var(--primary);
   border: 1px solid rgba(255,255,255,0.2);
   color: var(--light);
+}
+
+/* New styles for list items */
+.experience-item li,
+.job li,
+.skill-category li {
+  color: var(--list-text);
+  transition: color 0.3s ease;
+  padding: 0.3rem 0;
+}
+
+.experience-item li:hover,
+.job li:hover,
+.skill-category li:hover {
+  color: var(--list-hover);
 }
