@@ -2,322 +2,353 @@
    GLOBAL VARIABLES & RESET
 ----------------------------------- */
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Match the palette used on your main site */
+:root {
+  --primary: #2C3E50;
+  --secondary: #3498DB;
+  --accent: #E74C3C;
+  --light: #ECF0F1;
+  --dark: #2C3E50;
+  --text: #333;
+  --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --primary: #1a2634;
+  --secondary: #2980B9;
+  --light: #2C3E50;
+  --dark: #ECF0F1;
+  --text: #ECF0F1;
+}
+
+/* Body for the resume page */
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  background-color: var(--light);
+  line-height: 1.6;
+}
+
+.resume-page {
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* -----------------------------------
+   RESUME CONTAINER
+----------------------------------- */
+.resume-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 3rem;
+  box-shadow: 0 0 30px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  position: relative;
+}
+
+/* -----------------------------------
+   RESUME HEADER
+----------------------------------- */
+.resume-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 3px solid var(--primary);
+}
+
+/* Header info: container for picture + name + contact */
+.header-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  gap: 1.5rem;
+  justify-content: center; /* centers horizontally within header */
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+}
+
+.name-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.resume-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-items: center;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* -----------------------------------
+   SECTIONS
+----------------------------------- */
+.resume-section {
+  margin-bottom: 2.5rem;
+}
+
+.resume-section h2 {
+  color: var(--primary);
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--secondary);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* -----------------------------------
+   EXPERIENCE & EDUCATION ITEMS
+----------------------------------- */
+.experience-item,
+.education-item,
+.job {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--light);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.experience-item:hover,
+.education-item:hover,
+.job:hover {
+  transform: translateY(-2px);
+}
+
+.date,
+.dates {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.job-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+/* -----------------------------------
+   SKILLS
+----------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skill-category {
+  background: var(--light);
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-2px);
+}
+
+.skill-category h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.skill-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skill-category li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* -----------------------------------
+   PRINT BUTTON & ACTIONS
+----------------------------------- */
+.resume-actions {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 1rem;
+}
+
+.print-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.print-button:hover {
+  transform: translateY(-2px);
+}
+
+/* -----------------------------------
+   OPTIONAL BACK BUTTON
+----------------------------------- */
+.resume-nav {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+}
+
+/* -----------------------------------
+   THEME TOGGLE
+----------------------------------- */
+.theme-toggle {
+  position: fixed;
+  bottom: 80px; /* Adjust to avoid overlapping resume-actions */
+  right: 20px;
+  z-index: 1000;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--gradient);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+  border: none; /* If you want no border */
+}
+
+.theme-toggle:hover {
+  background: #0C2E40;
+}
+
+.theme-toggle i {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* -----------------------------------
+   PRINT MEDIA
+----------------------------------- */
+@media print {
+  .resume-page {
+    padding: 0;
+    background: #fff;
+  }
+
+  .resume-container {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0;
   }
-  
-  /* Match the palette used on your main site */
-  :root {
-    --primary: #2C3E50;
-    --secondary: #3498DB;
-    --accent: #E74C3C;
-    --light: #ECF0F1;
-    --dark: #2C3E50;
-    --text: #333;
-    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+
+  /* Hide all fixed action buttons on print */
+  .print-button,
+  .resume-nav,
+  .theme-toggle,
+  .resume-actions {
+    display: none;
   }
-  
-  /* Dark mode overrides */
-  [data-theme="dark"] {
-    --primary: #1a2634;
-    --secondary: #2980B9;
-    --light: #2C3E50;
-    --dark: #ECF0F1;
-    --text: #ECF0F1;
-  }
-  
-  /* Body for the resume page */
-  body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text);
-    background-color: var(--light);
-    line-height: 1.6;
-  }
-  
-  .resume-page {
-    padding: 2rem;
-    min-height: 100vh;
-  }
-  
-  /* -----------------------------------
-     RESUME CONTAINER
-  ----------------------------------- */
-  .resume-container {
-    max-width: 800px;
-    margin: 3rem auto;
-    background: #fff;
-    padding: 3rem;
-    box-shadow: 0 0 30px rgba(0,0,0,0.1);
-    border-radius: 12px;
-    position: relative;
-  }
-  
-  /* -----------------------------------
-     RESUME HEADER
-  ----------------------------------- */
-  .resume-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 3px solid var(--primary);
-  }
-  
-  .resume-header h1 {
-    font-size: 2.5rem;
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-  
-  .contact-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-    justify-items: center;
-  }
-  
-  .contact-info p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  /* -----------------------------------
-     SECTIONS
-  ----------------------------------- */
-  .resume-section {
-    margin-bottom: 2.5rem;
-  }
-  
-  .resume-section h2 {
-    color: var(--primary);
-    font-size: 1.8rem;
-    border-bottom: 2px solid var(--secondary);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* -----------------------------------
-     EXPERIENCE & EDUCATION ITEMS
-  ----------------------------------- */
+
   .experience-item,
   .education-item,
   .job {
-    margin-bottom: 2rem;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* -----------------------------------
+   RESPONSIVE STYLES
+----------------------------------- */
+@media (max-width: 600px) {
+  .resume-container {
     padding: 1.5rem;
-    background: var(--light);
-    border-radius: 8px;
-    transition: transform 0.3s ease;
+    margin: 1rem;
   }
-  
-  .experience-item:hover,
-  .education-item:hover,
-  .job:hover {
-    transform: translateY(-2px);
+
+  .header-info {
+    flex-direction: column;
   }
-  
-  .date,
-  .dates {
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    color: var(--dark);
+
+  .contact-info {
+    grid-template-columns: 1fr;
   }
-  
-  .job-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
+
+  .resume-page {
+    padding: 1rem;
   }
-  
-  /* -----------------------------------
-     SKILLS
-  ----------------------------------- */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
   }
-  
-  .skill-category {
-    background: var(--light);
-    padding: 1.5rem;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-  }
-  
-  .skill-category:hover {
-    transform: translateY(-2px);
-  }
-  
-  .skill-category h3 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-  }
-  
-  .skill-category ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .skill-category li {
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  /* -----------------------------------
-     PRINT BUTTON & ACTIONS
-  ----------------------------------- */
-  .resume-actions {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .print-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.2rem;
-    background: var(--primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-  
-  .print-button:hover {
-    transform: translateY(-2px);
-  }
-  
-  /* -----------------------------------
-     OPTIONAL BACK BUTTON
-  ----------------------------------- */
-  .resume-nav {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-  }
-  
-  .back-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.2rem;
-    background: var(--primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-  
-  .back-button:hover {
-    transform: translateY(-2px);
-  }
-  
-  /* -----------------------------------
-     THEME TOGGLE
-  ----------------------------------- */
-  .theme-toggle {
-    position: fixed;
-    bottom: 80px; /* Adjust to avoid overlapping resume-actions */
-    right: 20px;
-    z-index: 1000;
-    padding: 10px;
-    border-radius: 50%;
-    background: var(--gradient);
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    transition: background 0.3s;
-    border: none; /* If you want no border */
-  }
-  
-  .theme-toggle:hover {
-    background: #0C2E40;
-  }
-  
-  .theme-toggle i {
-    color: #fff;
-    font-size: 1.2rem;
-  }
-  
-  /* -----------------------------------
-     PRINT MEDIA
-  ----------------------------------- */
-  @media print {
-    .resume-page {
-      padding: 0;
-      background: #fff;
-    }
-  
-    .resume-container {
-      margin: 0;
-      padding: 0;
-      box-shadow: none;
-      border-radius: 0;
-    }
-  
-    /* Hide all fixed action buttons on print */
-    .print-button,
-    .resume-nav,
-    .theme-toggle,
-    .resume-actions {
-      display: none;
-    }
-  
-    .experience-item,
-    .education-item,
-    .job {
-      break-inside: avoid;
-      page-break-inside: avoid;
-    }
-  }
-  
-  /* -----------------------------------
-     RESPONSIVE STYLES
-  ----------------------------------- */
-  @media (max-width: 600px) {
-    .resume-container {
-      padding: 1.5rem;
-      margin: 1rem;
-    }
-  
-    .contact-info {
-      grid-template-columns: 1fr;
-    }
-  
-    .resume-page {
-      padding: 1rem;
-    }
-  }
-  
-  /* -----------------------------------
-     DARK MODE
-  ----------------------------------- */
-  [data-theme="dark"] body {
-    background: var(--dark);
-    color: var(--light);
-  }
-  
-  [data-theme="dark"] .resume-container {
-    background: var(--primary);
-    color: var(--light);
-  }
-  
-  [data-theme="dark"] .experience-item,
-  [data-theme="dark"] .education-item,
-  [data-theme="dark"] .job,
-  [data-theme="dark"] .skill-category {
-    background: var(--primary);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: var(--light);
-  }
-  
+}
+
+/* -----------------------------------
+   DARK MODE
+----------------------------------- */
+[data-theme="dark"] body {
+  background: var(--dark);
+  color: var(--light);
+}
+
+[data-theme="dark"] .resume-container {
+  background: var(--primary);
+  color: var(--light);
+}
+
+[data-theme="dark"] .experience-item,
+[data-theme="dark"] .education-item,
+[data-theme="dark"] .job,
+[data-theme="dark"] .skill-category {
+  background: var(--primary);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--light);
+}
