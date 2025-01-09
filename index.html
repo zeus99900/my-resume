@@ -95,6 +95,13 @@
           user-friendly websites that help businesses establish and expand 
           their online presence.
         </p>
+        <!-- Button to open the modal -->
+        <button
+          class="inquire-btn"
+          data-service="Custom Website Solutions"
+        >
+          Inquire Now
+        </button>
       </div>
 
       <div class="service-box fade-in">
@@ -105,6 +112,13 @@
           From predictive analytics to NLP solutions, we deliver cutting-edge 
           AI models tailored to your needs.
         </p>
+        <!-- Button to open the modal -->
+        <button
+          class="inquire-btn"
+          data-service="AI Model Development"
+        >
+          Inquire Now
+        </button>
       </div>
 
       <div class="service-box fade-in">
@@ -114,6 +128,13 @@
           Whether it's mobile or desktop, we create sleek, high-performance 
           applications that meet modern standards and run seamlessly across platforms.
         </p>
+        <!-- Button to open the modal -->
+        <button
+          class="inquire-btn"
+          data-service="App Development & Deployment"
+        >
+          Inquire Now
+        </button>
       </div>
     </section>
 
@@ -170,6 +191,40 @@
     <a href="#"><i class="fab fa-twitter"></i></a>
   </div>
 
+  <!-- MODAL FOR INQUIRY FORM -->
+  <div class="modal" id="inquiryModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h3 id="serviceTitle">Inquiry</h3>
+      <p>Please fill in your details and we'll get back to you shortly.</p>
+      <form
+        id="inquiryForm"
+        action=""
+        method="get"
+      >
+        <!-- The subject field will be updated by JavaScript -->
+        <input
+          type="hidden"
+          id="emailSubject"
+          name="subject"
+        />
+        <label>
+          Your Name:
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Your Email:
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Message:
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+
   <!-- JAVASCRIPT -->
   <script>
     // Slideshow variables
@@ -204,8 +259,8 @@
       showSlides(slideIndex = n);
     }
 
+    // Initialize slideshow
     document.addEventListener('DOMContentLoaded', () => {
-      // Initialize slideshow
       showSlides(slideIndex);
 
       // Auto-slide every 3 seconds
@@ -238,12 +293,48 @@
     };
 
     const observer = new IntersectionObserver(observerCallback);
-
-    // Observe elements that should fade in
     document.querySelectorAll('.service-box, .project-box, .about p')
       .forEach(el => observer.observe(el));
+
+    // Modal Logic
+    const modal = document.getElementById('inquiryModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const serviceTitle = document.getElementById('serviceTitle');
+    const inquiryForm = document.getElementById('inquiryForm');
+    const emailSubject = document.getElementById('emailSubject');
+
+    // Grab all "Inquire Now" buttons
+    const inquireButtons = document.querySelectorAll('.inquire-btn');
+
+    // When the user clicks an "Inquire Now" button
+    inquireButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const serviceName = btn.getAttribute('data-service');
+        serviceTitle.textContent = `Inquiry: ${serviceName}`;
+        
+        // Set up mailto or subject
+        // Using a 'mailto' link with subject:
+        // We'll build a custom "action" for the form
+        // e.g. mailto:zdalshorman@gmail.com?subject=Inquiry%20for%20...
+        const subjectParam = encodeURIComponent(`Inquiry for ${serviceName}`);
+        inquiryForm.action = `mailto:zdalshorman@gmail.com?subject=${subjectParam}`;
+        
+        // Show the modal
+        modal.classList.add('show');
+      });
+    });
+
+    // Close the modal
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+
+    // Also close when clicking outside modal content
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
+    });
   </script>
-
-
 </body>
 </html>
